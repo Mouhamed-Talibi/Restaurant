@@ -1,0 +1,59 @@
+    RESTAURANT PROJECT PLAN :
+    ------------------------
+
+    Admin Actions :
+    ---------------
+        * register for the first time 
+        * login to his account 
+        * add food category
+        * add products
+        * edit & delete products
+        * see the orders
+        * delete orders 
+        * answer for messages 
+
+    Delivery Actions : 
+    ------------------
+        * see orders 
+        * deliever orders and then mark them as done ✔ 
+        * add the status of the order 
+
+    Customer Actions :
+    ------------------
+        * browse the webiste 
+        * register as a customer 
+        * login to his account
+        * order food 
+        * order tables 
+        * full the inputs of their info 
+        * modify orders 
+        * browse the cart 
+        * cancel orders 
+        * choose payement method 
+        * pay the billet 
+
+
+    -----------------------------------------------------------------------------------------------------------------------------
+
+    DATABASE PLAN :
+    ---------------
+
+        Tables : 
+            customers (id, email, full_name, location, phone, order_date)
+            admins (id, username, email, password, registraion_date)
+            products (id, name, price, category_id, descripiton, image, added_at) 
+            categories (id, name, description, image, created_at)
+            orders (id, name, order_name, customer_id, status, price)
+            payements (id, customer_id, order_id, payement_method, totale_price)
+
+        Relations :
+            relation between customers & orders (customers[id] and order[id])
+            relation between products & categories (products[category_id] and categories[id])
+
+    ----------------------------------------------------------------------------------------------------------
+
+    Admin Registration method :
+        username
+        email
+        password 
+        registration_date 
