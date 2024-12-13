@@ -1,92 +1,303 @@
-    /* General Styles */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    background-color: rgb(167, 89, 55);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.navbar .brand {
+    font-style: oblique;
+    font-size: 19px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar .links a {
+    text-decoration: none;
+    color: rgb(211, 109, 14);
+    border: 2px solid white;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.navbar .links a:hover {
+    background-color: black;
+    color: orange;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.navbar .logout {
+    background-color: red;
+    color: white;
+}
+
+/* main content */
+main {
+    margin: 100px 20px 50px 20px; /* Adjust to fit navbar and footer */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Welcome Message */
+.message {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    background-color: rgb(167, 89, 55);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.message h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.message span {
+    color: orange;
+    font-weight: bold;
+}
+
+.message p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.message a {
+    text-decoration: none;
+    color: rgb(167, 89, 55);
+    font-weight: bold;
+    margin: 0 10px;
+    padding: 8px 12px;
+    border: 2px solid orange;
+    border-radius: 5px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.message a:hover {
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+}
+
+/* Statistics Section */
+.statics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: rgb(167, 89, 55);
+}
+
+.card-description span {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    main {
+        margin: 80px 10px 30px 10px;
     }
 
-    body {
-        font-family: Arial, sans-serif;
-    }
-
-    /* Navbar Styles */
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        background-color: #2c3e50;
-        color: white;
-    }
-
-    .navbar .brand a {
+    .message h2 {
         font-size: 24px;
-        font-weight: bold;
-        color: #1abc9c;
-        text-decoration: none;
     }
 
-    .navbar .links {
-        display: flex;
-        gap: 20px;
-    }
-
-    .navbar .links a {
-        color: white;
-        text-decoration: none;
+    .message p {
         font-size: 16px;
-        transition: color 0.3s;
     }
 
-    .navbar .links a:hover {
-        color: #1abc9c;
-    }
-
-    .navbar .btn-danger {
-        background-color: #e74c3c;
-        padding: 8px 15px;
-        border-radius: 5px;
+    .message a {
         font-size: 14px;
-        text-decoration: none;
-        color: white;
     }
 
-    .navbar .btn-danger:hover {
-        background-color: #c0392b;
+    .card-title {
+        font-size: 16px;
     }
 
-    /* Mobile Menu Toggle */
-    .menu-toggle {
-        display: none;
+    .card-description span {
+        font-size: 24px;
+    }
+}
+
+footer {
+    background-color: black;
+    margin-top: 40px;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+    position: fixed;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transition: transform 0.3s ease; /* Smooth transition for the hover effect */
+}
+
+footer:hover {
+    transform: translateY(-10px); /* Slight upward movement on hover */
+}
+
+footer .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+footer .main p {
+    margin: 0;
+    font-size: 14px;
+}
+
+footer .main a {
+    text-decoration: none;
+    color: orange;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+footer .main a:hover {
+    color: white;
+}
+
+footer .links {
+    display: flex;
+    gap: 15px;
+}
+
+footer .links a {
+    text-decoration: none;
+    color: orange;
+    text-align: center;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 2px solid rgb(167, 89, 55);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+footer .links a:hover {
+    background-color: orange;
+    color: black;
+    border: 2px solid black;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .navbar .links {
         flex-direction: column;
-        cursor: pointer;
+        gap: 10px;
     }
 
-    .menu-toggle .bar {
-        height: 3px;
-        width: 25px;
-        background-color: white;
-        margin: 3px 0;
+    footer .main {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.search-bar input {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid rgb(167, 89, 55); /* Matches navbar color */
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+    border-color: rgb(211, 109, 14); /* Highlighted border color */
+    box-shadow: 0 0 5px rgba(211, 109, 14, 0.5);
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    border: none;
+    background-color: rgb(211, 109, 14); /* Matches hover link color */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: rgb(167, 89, 55); /* Matches navbar background */
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .search-bar {
+        flex-direction: column;
+        gap: 10px;
     }
 
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-        .navbar .links {
-            display: none;
-            flex-direction: column;
-            background-color: #2c3e50;
-            position: absolute;
-            top: 60px;
-            right: 0;
-            width: 100%;
-            text-align: center;
-        }
-
-        .navbar .links.active {
-            display: flex;
-        }
-
-        .menu-toggle {
-            display: flex;
-        }
+    .search-bar input {
+        width: 100%;
+        border-radius: 5px;
     }
+
+    .search-bar button {
+        border-radius: 5px;
+    }
+}
+

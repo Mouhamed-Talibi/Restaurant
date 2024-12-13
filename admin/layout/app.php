@@ -20,19 +20,14 @@
         <header>
             <nav class="navbar">
                 <div class="brand">
-                    <a href="dashboard.php">Your Restaurant</a>
+                    <b>Your Restaurant</b>
                 </div>
                 <div class="links">
                     <a href="dashboard.php">Home</a>
                     <a href="add_category.php">Add Category</a>
                     <a href="add_product.php">Add Product</a>
                     <a href="all_products.php">All Products</a>
-                    <a href="logout.php" onclick="return confirm('Are you sure you want to logout?')" class="btn btn-danger">Logout</a>
-                </div>
-                <div class="menu-toggle" id="mobile-menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                    <a href="logout.php" class="logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
                 </div>
             </nav>
         </header>
@@ -44,6 +39,10 @@
         <footer>
             <div class="main">
                 <p>Developed By <a href="">Mouhamed Talibi</a> | Copyrights &copy; | All Rights Reserverd</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search orders, users, or products...">
+                    <button>Search</button>
+                </div>
                 <div class="links">
                     <a href="">Home</a>
                     <a href="">Products</a>
