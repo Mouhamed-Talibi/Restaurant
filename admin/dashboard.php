@@ -2,19 +2,19 @@
     require_once "include/admin_session.php";
     // set title
     $title = "Admin | Dashboard";
+    $stylePath = "style/dashboard.css";
     ob_start();
 ?>
 
     <!-- content -->
-    <link rel="stylesheet" href="style/dashboard.css">
     <main>
         <div class="message">
             <h2>Welcome Back, <span>Mouhamed Talibi</span>!</h2>
             <br>
             <p>
                 Would you like to: 
-                <a href="add_category.php">Add Category</a>
-                <a href="add_product.php">Add Product</a>
+                <a href="add_Category.php">Add Category</a>
+                <a href="add_Product.php">Add Product</a>
                 <a href="orders.php">View Orders</a>
             </p>
         </div>

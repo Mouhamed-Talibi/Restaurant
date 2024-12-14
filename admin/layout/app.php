@@ -13,6 +13,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Parkinsans:wght@300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
         <!-- icon link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+        <!-- style link -->
+        <link rel="stylesheet" href="<?php echo $stylePath; ?>">
     </head>
 
     <body>
@@ -24,7 +26,7 @@
                 </div>
                 <div class="links">
                     <a href="dashboard.php">Home</a>
-                    <a href="add_category.php">Add Category</a>
+                    <a href="add_Category.php">Add Category</a>
                     <a href="add_product.php">Add Product</a>
                     <a href="all_products.php">All Products</a>
                     <a href="logout.php" class="logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
