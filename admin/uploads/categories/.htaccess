@@ -1,5 +1,0 @@
-# .htaccess in uploads/categories
-<Files *>
-    Order Allow,Deny
-    Deny from all
-</Files>

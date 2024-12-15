@@ -27,7 +27,7 @@
                 <div class="links">
                     <a href="dashboard.php">Home</a>
                     <a href="add_Category.php">Add Category</a>
-                    <a href="add_product.php">Add Product</a>
+                    <a href="categories.php">Categoires</a>
                     <a href="all_products.php">All Products</a>
                     <a href="logout.php" class="logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
                 </div>
