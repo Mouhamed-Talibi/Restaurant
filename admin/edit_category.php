@@ -3,7 +3,7 @@
     require "include/admin_session.php";
 
     // specified category :
-    $id = $_GET['id'];
+    $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
     $categories_query = mysqli_prepare($connect, "SELECT * FROM categories WHERE id=?");
     mysqli_stmt_bind_param($categories_query, "i", $id);
     mysqli_stmt_execute($categories_query);
@@ -46,27 +46,9 @@
             }
         }
         else{
-            // re-insert the old records :
-            $category_stmt = mysqli_prepare($connect, "UPDATE categories SET name=?, description=?, icon=? WHERE id=?");
-            mysqli_stmt_bind_param($category_stmt, "sssi", $current_category['name'], $current_category['description'], $current_category['icon'], $id);
-            if(mysqli_stmt_execute($category_stmt)){
-                $error .= "
-                    <div class='alert alert-primary' role='alert'>
-                        Category Updated Sccessfully ✔
-                    </div>
-                    <script>
-                        setTimeout(function() {
-                            window.location.href = 'categories.php';
-                        }, 500); // 500 milliseconds = 0.5second
-                    </script>
-                ";
-            }
-            else{
-                $error .= "
-                    <div class='alert alert-danger' role='alert'>
-                        Category Not Updated !! 
-                    </div>
-                ";
+            if(mysqli_close($connect)){
+                header('Location: categories.php');
+                exit();
             }
         }
     }
