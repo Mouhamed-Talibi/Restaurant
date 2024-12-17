@@ -77,6 +77,20 @@ body {
     color: #333;
 }
 
+.adding-category-link{
+    background-color: rgb(156, 89, 55);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 3px;
+    color: white;
+    display: block; 
+    margin: 20px auto; 
+    margin: 20px auto; 
+    text-align: center; 
+    padding: 10px 0; 
+    width:15%;
+}
+
 .category {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Three cards per row */

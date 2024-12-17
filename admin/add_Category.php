@@ -22,7 +22,7 @@
             $imageFolder    = "uploads/categories/";
             $imageUpload    = $imageFolder. $imageName;
 
-            // check ir category already exists :
+            // check if category already exists :
             $query = mysqli_prepare($connect, "SELECT * FROM categories WHERE name=? OR image=?");
             mysqli_stmt_bind_param($query, "ss", $category_name, $imageUpload);
             mysqli_stmt_execute($query);

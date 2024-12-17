@@ -16,6 +16,7 @@
     <!-- content -->
     <div class="main-categories">
         <section>Food Categories</section>
+        <a href="add_Category.php" class="adding-category-link"> Add New category </a>
         <div class="category">
             <!-- retreiving categories -->
             <?php

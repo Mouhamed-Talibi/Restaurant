@@ -60,6 +60,14 @@ body {
     color: red;
 }
 
+h1{
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: orange;
+}
+
 /* Form Container */
 form {
     width: 100%;
@@ -74,39 +82,53 @@ form {
 
 /* Input Fields */
 .field-input {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .field-input label {
-    margin-bottom: 8px;
+    font-size: 16px;
     font-weight: bold;
-    color: #333;
+    margin-bottom: 8px;
 }
 
 .field-input input[type="text"],
+.field-input input[type="number"],
+.field-input textarea,
 .field-input input[type="file"],
-.field-input textarea {
+.field-input select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.field-input select {
+    appearance: none; /* For removing the default dropdown arrow */
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.field-input input[type="submit"] {
+    background-color: #007bff;
+    color: white;
     font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    padding: 12px;
+    cursor: pointer;
+    width: 100%;
 }
 
-.field-input input[type="text"]:focus,
-.field-input input[type="file"]:focus,
-.field-input textarea:focus {
-    border-color: #dfba16;
-    text-align: center;
+.field-input input[type="submit"]:hover {
+    background-color: #cf800a;
 }
 
-.field-input textarea {
-    resize: vertical;
-    min-height: 80px;
-}
 
 /* Submit Button */
 input[type="submit"] {
