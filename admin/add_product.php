@@ -1,6 +1,6 @@
 <?php
-    require "../database/config.php";
-    require "include/admin_session.php";
+    require_once "../database/config.php";
+    require_once "include/admin_session.php";
 
     $error = '';
     if (isset($_POST['add_product'])) {
@@ -11,8 +11,8 @@
             // Sanitize inputs
             $productName        = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
             $productDescription = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
-            $productPrice       = filter_var($_POST['price'], FILTER_VALIDATE_FLOAT);
-            $productCategory    = filter_var($_POST['category'], FILTER_VALIDATE_INT);
+            $productPrice       = floatval($_POST['price']);
+            $productCategory    = intval($_POST['category']);
 
             // Handling image
             $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
@@ -23,52 +23,65 @@
             $imageUpload   = $imageFolder . $imageName;
 
             // Check if product already exists
-            $query = mysqli_prepare($connect, "SELECT name, categoryId, image FROM products WHERE name=? OR categoryId=? OR image=?");
+            $query  = mysqli_prepare($connect, "SELECT name, categoryId, image FROM products WHERE name=? AND categoryId=? AND image=?");
             mysqli_stmt_bind_param($query, "sis", $productName, $productCategory, $imageUpload);
             mysqli_stmt_execute($query);
             $result = mysqli_stmt_get_result($query);
-
             if (mysqli_num_rows($result) > 0) {
                 $error .= "
                     <div class='alert alert-danger' role='alert'>
-                        A Product with the Same Name, Category, or Image Already Exists!
+                        This product Already Exists !! 
                     </div>
                 ";
-            } else {
+            } 
+            else {
                 // If valid image
                 if (in_array($productImage['type'], $allowed_types)) {
                     if (move_uploaded_file($imageTmpName, $imageUpload)) {
                         $stmt = mysqli_prepare(
                             $connect,
-                            "INSERT INTO products(name, description, price, image, categoryId) VALUES (?, ?, ?, ?, ?)"
+                            "INSERT INTO products(name, description, price, categoryId, image) VALUES (?, ?, ?, ?, ?)"
                         );
-                        mysqli_stmt_bind_param($stmt, "ssisi", $productName, $productDescription, $productPrice, $imageUpload, $productCategory);
+                        mysqli_stmt_bind_param($stmt, "ssdis", $productName, $productDescription, $productPrice, $productCategory, $imageUpload);
                         if (mysqli_stmt_execute($stmt)) {
-                            header("Location: products.php");
-                            exit;
-                        } else {
+                            // successful adding
+                            $error .= "
+                                <div class='alert alert-success' role='alert'>
+                                    New Product Added ✔
+                                </div>
+                                <script>
+                                    setTimeout(function() {
+                                        window.location.href = 'products.php';
+                                    }, 500); 
+                                </script>
+                            ";
+                        } 
+                        else {
                             $error .= "
                                 <div class='alert alert-danger' role='alert'>
                                     Product Not Added!
                                 </div>
                             ";
                         }
-                    } else {
+                    }
+                    else {
                         $error .= "
                             <div class='alert alert-danger' role='alert'>
                                 Problem with uploading image!
                             </div>
                         ";
                     }
-                } else {
+                } 
+                else {
                     $error .= "
                         <div class='alert alert-danger' role='alert'>
-                            Image Type Not Supported !!
+                            Image Type Or Empty Image Not Accepted!!
                         </div>
                     ";
                 }
             }
-        } else {
+        } 
+        else {
             $error .= "
                 <div class='alert alert-danger' role='alert'>
                     All Fields Required !!
@@ -98,7 +111,7 @@
     </div>
     <div class="field-input">
         <label for="">Product Price</label>
-        <input type="number" name="price" id="" placeholder="Example: 67.56">
+        <input type="text" name="price" id="" placeholder="Example: 55 or 45.67">
     </div>
     <div class="field-input">
         <label for="">Product Category</label>

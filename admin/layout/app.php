@@ -29,6 +29,8 @@
                     <a href="#">Orders</a>
                     <a href="categories.php">Categoires</a>
                     <a href="products.php">Products</a>
+                    <a href="add_Category.php">Add Category</a>
+                    <a href="add_product.php">Add Product</a>
                     <a href="logout.php" class="logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
                 </div>
             </nav>
