@@ -1,63 +1,32 @@
 <?php
-    require "../database/config.php";
-    require "include/admin_session.php";
+    require_once "../database/config.php";
+    require_once "include/admin_session.php";
 
-    // specified category :
-    $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
-    $productQuery = mysqli_prepare($connect, "SELECT * FROM products WHERE id=?");
-    mysqli_stmt_bind_param($productQuery, "i", $id);
-    mysqli_stmt_execute($productQuery);
-    $result = mysqli_stmt_get_result($productQuery);
-    $currentProduct = mysqli_fetch_assoc($result);
-
-    $error = "";
-    // add category Logic :
-    if(isset($_POST['update_category'])){
-        if(
-            isset($_POST['category_name'], $_POST['category_description'], $_POST['category_icon']) 
-            && !empty($_POST['category_name']) && !empty($_POST['category_description'])&& !empty($_POST['category_icon'])
-        ) {
-            // valid & sanitize data :
-            $category_name        = filter_var($_POST['category_name'], FILTER_SANITIZE_STRING);
-            $category_description = filter_var($_POST['category_description'], FILTER_SANITIZE_STRING);
-            $category_icon        = filter_var($_POST['category_icon'], FILTER_SANITIZE_STRING);
-
-            // update records :
-            $stmt = mysqli_prepare($connect, "UPDATE categories SET name=?, description=?, icon=? WHERE id=?");
-            mysqli_stmt_bind_param($stmt, "sssi", $category_name, $category_description, $category_icon, $id);
-            if(mysqli_stmt_execute($stmt)){
-                $error .= "
-                    <div class='alert alert-primary' role='alert'>
-                        Category Updated Sccessfully ✔
-                    </div>
-                    <script>
-                        setTimeout(function() {
-                            window.location.href = 'categories.php';
-                        }, 500); // 500 milliseconds = 0.5second
-                    </script>
-                ";
-            }
-            else{
-                $error .= "
-                    <div class='alert alert-danger' role='alert'>
-                        Category Not Updated !! 
-                    </div>
-                ";
-            }
-        }
-        else{
-            if(mysqli_close($connect)){
-                header('Location: categories.php');
-                exit();
-            }
-        }
+    $error = '';
+    // check for valid id :
+    if(isset($_GET['id']) && intval($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)){
+        $validId = $_GET['id'];
+        // select current product data :
+        $curr_product_stmt = mysqli_prepare($connect, "SELECT * FROM products WHERE id=?");
+        mysqli_stmt_bind_param($curr_product_stmt, "i", $validId);
+        mysqli_stmt_execute($curr_product_stmt);
+        $result = mysqli_stmt_get_result($curr_product_stmt);
+        $currentProduct = mysqli_fetch_assoc($result);
+    }
+    else{
+        $error .= "
+            <div class='alert alert-danger' role='alert'>
+                The Product Id Not Valid !! 
+            </div>
+        ";
     }
 
+    
+
     // html vars
-    $title = "Admin | Adding Category";
+    $title = "Admin | Editing Product";
     $stylePath = "style/addCategory.css";
     ob_start();
-
 ?>
 
     <!-- content -->
@@ -80,19 +49,24 @@
             <input type="text" name="price" id="" placeholder="Example: 55 or 70.55" value="<?= $currentProduct['price']?>">
         </div>
         <div class="field-input">
-            <label for="">Product Category</label>
-            <select name="category" id="">
-                <option value="<?= $currentProduct['id']?>"> Salads</option>
-                <!-- select categories -->
+            <label for="category">Product Category</label>
+            <select name="category" id="category">
+                <!-- select stored category -->
                 <?php
                     $categoriesQuery = mysqli_query($connect, "SELECT id, name FROM categories");
-                    while($category = mysqli_fetch_assoc($categoriesQuery)){
+                    while ($category = mysqli_fetch_assoc($categoriesQuery)) {
+                        // Check if this category matches the current product's category
+                        $selected = ($category['id'] == $currentProduct['categoryId']) ? 'selected' : '';
                         ?>
-                            <option value="<?= $category['id']?>"><?= $category['name']?></option>
+                            <option value="<?= $category['id'] ?>" <?= $selected ?>> <?= $category['name'] ?> </option>
                         <?php
                     }
                 ?>
             </select>
+        </div>
+        <div class="field-input">
+            <label for="">Product Image</label>
+            <input type="file" name="image" id="">
         </div>
         <!-- submit -->
         <input type="submit" value="Update category" name="update_category">
