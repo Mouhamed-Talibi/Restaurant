@@ -64,43 +64,43 @@
     ob_start();
 ?>
 
-<div class="confirmation">
-    <!-- errors section -->
-    <?php if (!empty($error)) { echo $error; } ?>
+    <div class="confirmation">
+        <!-- errors section -->
+        <?php if (!empty($error)) { echo $error; } ?>
 
-    <h3>Are You Sure You Want To Delete This Category?</h3>
-    <div class="category">
-        <!-- Retrieving categories -->
-        <div class="card" style="width: 300px; margin:auto;">
-            <img 
-                src="<?= !empty($category['image']) ? $category['image'] : 'placeholder.jpg' ?>" 
-                class="card-img-top" 
-                alt="Category Image"
-                style="height: 200px; object-fit: cover"
-            >
-            <div class="card-body">
-                <h5 class="card-title">
-                    <i class="<?= htmlspecialchars($category['icon']) ?>"></i>
-                    <?= htmlspecialchars($category['name']) ?>
-                </h5>
-                <p class="card-text"><?= htmlspecialchars($category['description']) ?></p>
-            </div>
-            <div class="card-body d-flex justify-content-between">
-                <!-- Delete Form -->
-                <form action="" method="POST">
-                    <!-- <input type="hidden" name="category_id" value=""> -->
-                    <button type="submit" class="btn btn-danger" name="delete">
-                        Yes, Delete
-                    </button>
-                </form>
-                <!-- Cancel Link -->
-                <a href="categories.php" class="btn btn-success">
-                    No, Cancel
-                </a>
+        <h3>Are You Sure You Want To Delete This Category?</h3>
+        <div class="category">
+            <!-- Retrieving categories -->
+            <div class="card" style="width: 300px; margin:auto;">
+                <img 
+                    src="<?= !empty($category['image']) ? $category['image'] : 'placeholder.jpg' ?>" 
+                    class="card-img-top" 
+                    alt="Category Image"
+                    style="height: 200px; object-fit: cover"
+                >
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="<?= htmlspecialchars($category['icon']) ?>"></i>
+                        <?= htmlspecialchars($category['name']) ?>
+                    </h5>
+                    <p class="card-text"><?= htmlspecialchars($category['description']) ?></p>
+                </div>
+                <div class="card-body d-flex justify-content-between">
+                    <!-- Delete Form -->
+                    <form action="" method="POST">
+                        <!-- <input type="hidden" name="category_id" value=""> -->
+                        <button type="submit" class="btn btn-danger" name="delete">
+                            Yes, Delete
+                        </button>
+                    </form>
+                    <!-- Cancel Link -->
+                    <a href="categories.php" class="btn btn-success">
+                        No, Cancel
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 <?php
     $content = ob_get_clean();
