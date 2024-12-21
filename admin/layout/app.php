@@ -48,9 +48,9 @@
                     <button>Search</button>
                 </div>
                 <div class="links">
-                    <a href="">Home</a>
-                    <a href="">Products</a>
-                    <a href="">Categories</a>
+                    <a href="dashboard.php">Home</a>
+                    <a href="products.php">Products</a>
+                    <a href="categories.php">Categories</a>
                 </div>
             </div>
         </footer>
